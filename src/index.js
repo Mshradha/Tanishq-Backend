@@ -32,5 +32,6 @@ app.listen(port, async () => {
     console.log(`listening to port ${port}`);
   } catch (error) {
     console.log(error);
+    console.log("hello")
   }
 });
