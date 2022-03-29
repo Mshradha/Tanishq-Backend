@@ -8,6 +8,7 @@ const Product = require("../models/product.model");
 router.get("", async (req, res) => {
   console.log("hello");
   try {
+    if(req.query){
       if (req.query.type) {
         const t = req.query.type;
         const qtproduct = await Product.find({ type: t})
@@ -38,6 +39,13 @@ router.get("", async (req, res) => {
         const product = await Product.find().lean().exec();
         return res.status(200).send(product);
       }
+    }
+    else{
+      console.log("helloooooooooooooooo");
+      const product = await Product.find().lean().exec();
+      return res.status(200).send(product);
+    }
+      
 
   } catch (error) {
     res.status(400).send({ message: error.message });
