@@ -25,7 +25,7 @@ router.use("/product", productController);
 
 const connect = require("./configs/db");
 
-const port = 5000 || process.env.PORT;
+const port =  process.env.PORT;
 app.listen(port, async () => {
   try {
     await connect();
