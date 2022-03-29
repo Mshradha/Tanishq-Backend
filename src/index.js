@@ -3,21 +3,8 @@ const { register, login, newtoken } = require("./controllers/auth.controller");
 
 const userController = require("./controllers/user.controller");
 
-const mdiamondController = require("./controllers/mdiamond.controller")
+const productController = require("./controllers/product.controller")
 
-const menproductController = require("./controllers/menproduct.controller")
-
-const mgoldController = require("./controllers/mgold.controller")
-
-const mplatinumController = require("./controllers/mplatinum.controller")
-
-const wdiamondController = require("./controllers/wdiamond.controller")
-
-const wgoldController = require("./controllers/wgold.controller")
-
-const womenproductController = require("./controllers/womenproduct.controller")
-
-const wplatinumController = require("./controllers/wplatinum.controller")
 
 const app = express();
 
@@ -35,21 +22,8 @@ router.use("/user", userController);
 
 router.use("/user", userController);
 
-router.use("/mdiamond",mdiamondController)
+router.use("/product",productController)
 
-router.use("/menproduct",menproductController)
-
-router.use("/mgold",mgoldController)
-
-router.use("/mplatinum",mplatinumController)
-
-router.use("/wdiamond",wdiamondController)
-
-router.use("/wgold",wgoldController)
-
-router.use("/womenproduct",womenproductController)
-
-router.use("/wplatinum",wplatinumController)
 
 const connect = require("./configs/db");
 
