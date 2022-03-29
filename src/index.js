@@ -3,16 +3,15 @@ const { register, login, newtoken } = require("./controllers/auth.controller");
 
 const userController = require("./controllers/user.controller");
 
-const productController = require("./controllers/product.controller")
-
+const productController = require("./controllers/product.controller");
 
 const app = express();
 
 app.use(express.json());
 
-const router = express.Router()
+const router = express.Router();
 
-app.use(router)
+app.use(router);
 
 router.use("/register", register);
 
@@ -22,16 +21,15 @@ router.use("/user", userController);
 
 router.use("/user", userController);
 
-router.use("/product",productController)
-
+router.use("/product", productController);
 
 const connect = require("./configs/db");
 
-
-app.listen(5000, async () => {
+const port = 5000 || process.env.PORT;
+app.listen(port, async () => {
   try {
     await connect();
-    console.log("listening to port 5000");
+    console.log(`listening to port ${port}`);
   } catch (error) {
     console.log(error);
   }
