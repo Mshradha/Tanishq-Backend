@@ -1,4 +1,7 @@
 const express = require("express");
+const { register, login, newtoken } = require("./controllers/auth.controller");
+
+const userController = require("./controllers/user.controller");
 
 const mdiamondController = require("./controllers/mdiamond.controller")
 
@@ -23,6 +26,14 @@ app.use(express.json());
 const router = express.Router()
 
 app.use(router)
+
+router.use("/register", register);
+
+router.use("/login", login);
+
+router.use("/user", userController);
+
+router.use("/user", userController);
 
 router.use("/mdiamond",mdiamondController)
 
