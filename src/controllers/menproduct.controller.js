@@ -1,12 +1,16 @@
-const express = require("express")
+const express = require("express");
 
-const router = express.Router()
+const router = express.Router();
 
-const Menproduct = require("../models/menproduct.model")
+const Menproduct = require("../models/menproduct.model");
 
-router.get("",async(req,res)=>{
-    const menproduct = await Menproduct.find().lean().exec()
-    res.status(200).send(menproduct)
-})
+router.get("", async (req, res) => {
+  try {
+    const menproduct = await Menproduct.find().lean().exec();
+    res.status(200).send(menproduct);
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+});
 
-module.exports=router
+module.exports = router;
