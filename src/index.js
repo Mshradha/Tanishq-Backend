@@ -35,3 +35,15 @@ app.listen(port, async () => {
     console.log("hello")
   }
 });
+
+
+// app.listen(5000, async () => {
+//   try {
+//     await connect();
+//     console.log("listening to port 5000");
+//   } catch (error) {
+//     console.log(error);
+//     console.log("hello")
+//   }
+// });
+
