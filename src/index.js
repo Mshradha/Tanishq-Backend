@@ -1,4 +1,7 @@
 const express = require("express");
+
+var cors = require('cors')
+
 const { register, login, newtoken } = require("./controllers/auth.controller");
 
 const userController = require("./controllers/user.controller");
@@ -6,6 +9,8 @@ const userController = require("./controllers/user.controller");
 const productController = require("./controllers/product.controller");
 
 const app = express();
+
+app.use(cors())
 
 app.use(express.json());
 

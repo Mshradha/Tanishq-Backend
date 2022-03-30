@@ -8,7 +8,7 @@ const Product = require("../models/product.model");
 router.get("", async (req, res) => {
   console.log("hello");
   try {
-    if (req.query.type && req.query.category) {
+    if (req.query.type&&req.query.category) {
       const t = req.query.type;
       const c = req.query.category;
       const qctproduct = await Product.find({ category: c, type: t })
