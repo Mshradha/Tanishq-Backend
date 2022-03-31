@@ -4,6 +4,8 @@ var cors = require("cors");
 
 const { register, login, newtoken } = require("./controllers/auth.controller");
 
+const cartController = require("./controllers/cart.controller")
+
 const userController = require("./controllers/user.controller");
 
 const productController = require("./controllers/product.controller");
@@ -27,6 +29,8 @@ router.use("/user", userController);
 router.use("/user", userController);
 
 router.use("/product", productController);
+
+router.use("/cart",cartController)
 
 const connect = require("./configs/db");
 
