@@ -11,8 +11,7 @@ const cartSchema = mongoose.Schema(
     },
     cart: {
       required: true,
-      type: Array,
-      of: Product,
+      type: [Product],
     },
   },
   {
