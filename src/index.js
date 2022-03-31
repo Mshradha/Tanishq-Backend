@@ -34,22 +34,22 @@ router.use("/cart",cartController)
 
 const connect = require("./configs/db");
 
-const port =  process.env.PORT;
-app.listen(port, async () => {
-  try {
-    await connect();
-    console.log(`listening to port ${port}`);
-  } catch (error) {
-    console.log(error);
-    console.log("hello")
-  }
-});
-
-// app.listen(5000, async () => {
+// const port =  process.env.PORT;
+// app.listen(port, async () => {
 //   try {
 //     await connect();
-//     console.log("listening to port 5000");
+//     console.log(`listening to port ${port}`);
 //   } catch (error) {
 //     console.log(error);
+//     console.log("hello")
 //   }
 // });
+
+app.listen(5000, async () => {
+  try {
+    await connect();
+    console.log("listening to port 5000");
+  } catch (error) {
+    console.log(error);
+  }
+});
