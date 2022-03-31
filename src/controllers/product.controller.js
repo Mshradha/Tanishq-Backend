@@ -1,40 +1,40 @@
 const express = require("express");
-const { contentType, type } = require("express/lib/response");
+const httpStatus = require("http-status");
 
 const router = express.Router();
 
 const Product = require("../models/product.model");
 
 router.get("", async (req, res) => {
-  console.log("hello");
   try {
-    if (req.query.type&&req.query.category) {
-      const t = req.query.type;
-      const c = req.query.category;
-      const qctproduct = await Product.find({ category: c, type: t })
-        .lean()
-        .exec();
-      console.log(qctproduct);
-      return res.status(200).send(qctproduct);
-    } else if (req.query.category) {
-      const c = req.query.category;
-      const qcproduct = await Product.find({ category: c }).lean().exec();
-      console.log(qcproduct);
-      return res.status(200).send(qcproduct);
-    }   
-     if (req.query.type) {
-        const t = req.query.type;
-        const qtproduct = await Product.find({ type: t }).lean().exec();
-        console.log(qtproduct);
-        return res.status(200).send(qtproduct);
-      } 
-    else {
-      console.log("helloooooooooooooooo");
-      const product = await Product.find().lean().exec();
-      return res.status(200).send(product);
+    let products;
+    const { type, category, sortBy } = req.query;
+    console.log(req.query)
+    if (type && category) {
+      products = await Product.find({ type, category }).lean().exec();
+    } else if (type) {
+      products = await Product.find({ type }).lean().exec();
+    } else if (category) {
+      products = await Product.find({ category }).lean().exec();
+    } else {
+      products = await Product.find({}).lean().exec();
     }
-  } catch (error) {
-    res.status(400).send({ message: error.message });
+    // console.log(sortBy);
+    if (sortBy) {
+      if (sortBy === "high") {
+        products.sort((a, b) => {
+          return b.price - a.price;
+        });
+      } else if (sortBy === "low") {
+        products.sort((a, b) => {
+          return a.price - b.price;
+        });
+      }
+    }
+
+    res.status(httpStatus.OK).send(products);
+  } catch (err) {
+    return res.status(httpStatus.BAD_REQUEST).send({ message: err.message });
   }
 });
 
