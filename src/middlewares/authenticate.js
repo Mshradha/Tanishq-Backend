@@ -17,16 +17,18 @@ const verifyToken = (token) => {
 };
 
 const authenticate = async (req, res, next) => {
+  // console.log(req.headers);
   if (!req.headers.authorization)
     return res
       .status(400)
       .send({ message: "Authorization token not found or incorrect" });
-
+  // console.log(req.headers);
   if (!req.headers.authorization.startsWith("Bearer "))
     return res
       .status(400)
       .send({ message: "Authorization token not found or incorrect" });
 
+  // console.log(req.headers);
   const token = req.headers.authorization.trim().split(" ")[1];
 
   let decoded;

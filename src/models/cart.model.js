@@ -11,6 +11,7 @@ const cartSchema = mongoose.Schema({
   cart: {
     required: true,
     type: Array,
+    default: [],
   },
 });
 
