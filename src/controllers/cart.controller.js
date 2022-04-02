@@ -83,4 +83,22 @@ router.delete("", authenticate, async (req, res) => {
   }
 });
 
+router.put("", authenticate, async (req, res) => {
+  try {
+    const { _id } = req.userID;
+    const { userId, cId } = req.body;
+    if (userId !== _id.toString()) {
+      throw new Error("Unauthorised access to cart");
+    }
+    const nCart = await Cart.findOne({ userID: _id });
+    if (!nCart) {
+      throw new Error("User does have a cart");
+    }
+    const cart = await Cart.findByIdAndRemove({_id:cId});
+    res.status(httpStatus.OK).send("Checkout Completed")
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).send({ message: error.message });
+  }
+});
+
 module.exports = router;
