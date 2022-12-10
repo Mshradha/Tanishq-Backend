@@ -17,9 +17,9 @@ app.use(cors());
 app.use(express.json());
 
 const router = express.Router();
-// app.get('/', async(req, res)=>{
-//   res.send("Home")
-// })
+app.get('/', async(req, res)=>{
+  res.send("Home")
+})
 
 app.use(router);
 
